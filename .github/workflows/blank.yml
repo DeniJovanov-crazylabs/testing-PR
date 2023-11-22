@@ -6,10 +6,10 @@ on:
 
 jobs:
  print-ref:
-   runs-on: ubuntu-latest
+   runs-on: self-hosted
    steps:
      - name: Checkout code
        uses: actions/checkout@v2
 
      - name: Print GitHub Ref
-       run: echo "${{ toJSON(github) }}"
+       run: echo "${{ github.head.ref }}"
