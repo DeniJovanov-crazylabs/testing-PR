@@ -1,15 +1,19 @@
-name: Print GitHub Ref
+name: CI
+on: [push, pull_request]
 
-on:
-  pull_request:
-    types: [closed]
+run-name: "CI run for ${{ github.head_ref || github.ref }}"
 
 jobs:
- print-ref:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Checkout code
-       uses: actions/checkout@v2
+ build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-     - name: Print GitHub Ref
-       run: echo "The GitHub Ref is ${{ github.ref }}"
+      - name: Run tests
+        run: |
+          echo "Running tests..."
+
+      - name: Deploy
+        run: |
+          echo "Deploying..."
